@@ -11,6 +11,8 @@ class Triangle {
   }
 
   public function length() {
+    $ans = 0;
+    
     for($i = 0; $i < $this->n; $i++){
       for($j = 0; $j < $this->n; $j++){
         for($k = 0; $k < $this->n; $k++){
@@ -18,17 +20,15 @@ class Triangle {
           $len = $this->bars[$i] + $this->bars[$j] + $this->bars[$k];
           $max = max($this->bars[$i], $this->bars[$j], $this->bars[$k]);
 
-          if($len - $max >= $max) {
-            return $len;
-          } else {
-            return 0;
-          }
+          if( ($len - $max) >= $max && $ans < $max) {
+            $ans = $max;
+          } 
 
         }
       }
     }
+    return $ans;
   }
-
 }
 
 class TriangleTest extends PHPUnit_Framework_TestCase {
